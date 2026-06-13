@@ -7,15 +7,15 @@ This file tracks where we are. Each session, read the top to remember what's don
 ---
 
 ## Current position
-> **Phase 0 — Setup · Step 3: Install git + learn version control**
+> **Phase 0 COMPLETE ✅ → starting Phase 1 — Project plan & structure**
+> Repo live at: https://github.com/mahsan2009/parrot-detector
 
 ## Phase checklist
-- [ ] **Phase 0 — Setup**: terminal basics, GPU check, uv virtual environment, git + GitHub, first commit
+- [x] **Phase 0 — Setup** ✅ terminal basics, GPU check, uv venv, git + GitHub, first commit + push
   - [x] Step 1: Confirm NVIDIA GPU with `nvidia-smi`  → RTX 3060, 12 GB, CUDA 13.3 driver ✅
   - [x] Step 2: Understand uv + create the project virtual environment (.venv, Python 3.12.13) ✅
-  - [ ] Step 3: Install git, explain version control  ← *you are here*
-  - [ ] Step 4: Create GitHub account/repo
-  - [ ] Step 5: First commit + push
+  - [x] Step 3: git ready (2.45.0), repo init, branch `main`, .gitignore, FIRST COMMIT 489ed8e ✅
+  - [x] Step 4: Pushed to GitHub → https://github.com/mahsan2009/parrot-detector ✅
 - [ ] **Phase 1 — Project plan & structure** (folders, README, .gitignore)
 - [ ] **Phase 2 — Data collection** (filming tips, avoid background trap, ffmpeg frames)
 - [ ] **Phase 3 — Annotation** (Label Studio, bounding boxes, export YOLO format)
