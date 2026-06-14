@@ -11,3 +11,21 @@ __pycache__/
 # --- Operating-system junk files ---
 Thumbs.db
 .DS_Store
+
+# --- Large data: videos & extracted frames (keep on disk, not in git) ---
+data/raw_videos/*
+data/frames/*
+
+# --- Trained model weights (large binary files) ---
+*.pt
+*.onnx
+models/*
+
+# --- YOLO training output folders (auto-generated, large) ---
+runs/
+
+# --- Jupyter notebook autosave junk ---
+.ipynb_checkpoints/
+
+# ...but DO keep the empty-folder placeholders so the structure survives:
+!**/.gitkeep
