@@ -7,7 +7,8 @@ This file tracks where we are. Each session, read the top to remember what's don
 ---
 
 ## Current position
-> **Phase 1 COMPLETE ✅ → next: Phase 2 — Data collection (filming + ffmpeg frames)**
+> **Phase 2 COMPLETE ✅ → next: Phase 3 — Annotation with Label Studio**
+> Dataset: 231 frames in data\frames (Cookie 76, Nona 78, White-tota 77 — balanced). fps=0.5 extraction.
 > Repo live at: https://github.com/mahsan2009/parrot-detector
 
 ## Phase checklist
@@ -21,7 +22,9 @@ This file tracks where we are. Each session, read the top to remember what's don
   - [x] Step 2: Write the starter README (classes locked: Cookie, Nona, White-tota) ✅
   - [x] Step 3: Expanded .gitignore for data/models/runs; commit + push ✅
   - [ ] Step 3: Expand .gitignore for data/models; commit + push
-- [ ] **Phase 2 — Data collection** (filming tips, avoid background trap, ffmpeg frames)
+- [x] **Phase 2 — Data collection** ✅ (filming, background-trap awareness, ffmpeg frames)
+  - [x] Step 1: Filmed all 3 birds across varied spots/sessions (~31 clips total) ✅
+  - [x] Step 2: Installed ffmpeg 8.1.1; extracted 231 frames at fps=0.5 (balanced ~77/bird) ✅
 - [ ] **Phase 3 — Annotation** (Label Studio, bounding boxes, export YOLO format)
 - [ ] **Phase 4 — Data pipeline** (YOLO folder layout, split by session, data config)
 - [ ] **Phase 5 — Training & experiments** (CUDA PyTorch, YOLO, compare small models)
