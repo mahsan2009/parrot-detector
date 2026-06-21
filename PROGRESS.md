@@ -7,9 +7,9 @@ This file tracks where we are. Each session, read the top to remember what's don
 ---
 
 ## Current position
-> **Phase 3 COMPLETE ✅ → next: Phase 4 — Data pipeline (YOLO folders + split by session)**
-> Dataset: 231 frames; 227 labeled, 4 skipped. YOLO export zip in Downloads:
->   project-3-at-2026-06-20-16-50-636539de.zip (classes.txt + images/ + labels/). Filenames keep session prefix.
+> **Phase 4 COMPLETE ✅ → next: Phase 5 — Training & experiments (CUDA PyTorch + YOLO)**
+> Dataset split BY SESSION: train 160 / val 44 / test 23 (all in data/dataset, YOLO layout).
+> Config: data.yaml (classes 0 Cookie, 1 Nona, 2 White-tota). Split script: scripts/split_dataset.py.
 > Repo live at: https://github.com/mahsan2009/parrot-detector
 
 ## Phase checklist
@@ -31,7 +31,11 @@ This file tracks where we are. Each session, read the top to remember what's don
   - [x] Step 2: Launched, created "Parrot Detector" project, 3 labels, imported 231 tasks ✅
   - [x] Step 3: Drew boxes + labeled every visible bird (227 labeled, 4 skipped) ✅
   - [x] Step 4: Exported "YOLO with Images" zip (227 imgs + labels + classes.txt) ✅
-- [ ] **Phase 4 — Data pipeline** (YOLO folder layout, split by session, data config)
+- [x] **Phase 4 — Data pipeline** ✅ (YOLO folder layout, split by session, data config)
+  - [x] Step 1: Learned train/val/test + why split by session; unzipped export ✅
+  - [x] Step 2: scripts/split_dataset.py → split BY SESSION (train 160 / val 44 / test 23) ✅
+  - [x] Step 3: Created data.yaml (paths + class names in classes.txt order) ✅
+  - [x] Step 4: Verified images=labels per split; test pile has all 3 birds ✅
 - [ ] **Phase 5 — Training & experiments** (CUDA PyTorch, YOLO, compare small models)
 - [ ] **Phase 6 — Evaluation & comparison** (confusion matrix, pick winner)
 - [ ] **Phase 7 — Deployment** (webcam script + batch folder script)

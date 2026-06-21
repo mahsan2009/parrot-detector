@@ -1,0 +1,17 @@
+# Dataset configuration for Ultralytics YOLO.
+# This file tells YOLO WHERE the data is and WHAT the class names are.
+
+# Absolute path to the dataset root folder (the one holding images/ and labels/).
+path: D:/Projects/ParrotDetector/data/dataset
+
+# Sub-paths (relative to 'path' above) for each pile:
+train: images/train   # study material
+val: images/val       # practice quizzes (checked during training)
+test: images/test     # final exam (used once, at the end)
+
+# The classes, in the SAME order as classes.txt from the export.
+# The number is the class id YOLO uses internally; the name is what we read.
+names:
+  0: Cookie
+  1: Nona
+  2: White-tota

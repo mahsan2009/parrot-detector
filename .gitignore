@@ -16,6 +16,10 @@ Thumbs.db
 data/raw_videos/*
 data/frames/*
 
+# --- Label Studio export + the split YOLO dataset (lots of images, keep local) ---
+data/label_export/
+data/dataset/
+
 # --- Trained model weights (large binary files) ---
 *.pt
 *.onnx
