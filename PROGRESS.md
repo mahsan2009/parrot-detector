@@ -7,7 +7,9 @@ This file tracks where we are. Each session, read the top to remember what's don
 ---
 
 ## Current position
-> **Phase 4 COMPLETE ✅ → next: Phase 5 — Training & experiments (CUDA PyTorch + YOLO)**
+> **Phase 5 COMPLETE ✅ → next: Phase 6 — Evaluation (confusion matrix, pick winner)**
+> Winner: Exp B (yolo11s small, pretrained) mAP50 0.981 → runs/detect/expB_small_pretrained/weights/best.pt
+> Installed: torch 2.12.1+cu130 (GPU OK), ultralytics 8.4.72, opencv. GPU: RTX 3060. (use workers=2)
 > Dataset split BY SESSION: train 160 / val 44 / test 23 (all in data/dataset, YOLO layout).
 > Config: data.yaml (classes 0 Cookie, 1 Nona, 2 White-tota). Split script: scripts/split_dataset.py.
 > Repo live at: https://github.com/mahsan2009/parrot-detector
@@ -36,10 +38,27 @@ This file tracks where we are. Each session, read the top to remember what's don
   - [x] Step 2: scripts/split_dataset.py → split BY SESSION (train 160 / val 44 / test 23) ✅
   - [x] Step 3: Created data.yaml (paths + class names in classes.txt order) ✅
   - [x] Step 4: Verified images=labels per split; test pile has all 3 birds ✅
-- [ ] **Phase 5 — Training & experiments** (CUDA PyTorch, YOLO, compare small models)
+- [ ] **Phase 5 — Training & experiments** (CUDA PyTorch, YOLO, compare small models)  ← *you are here*
+  - [x] Step 1: Installed GPU PyTorch (torch 2.12.1+cu130) + Ultralytics 8.4.72; GPU verified ✅
+  - [x] Step 2: Exp A — fine-tuned YOLO nano (overall mAP50 0.93) ✅
+  - [x] Step 3: Exp B — fine-tuned YOLO small (overall mAP50 0.981 — best; big Cookie gain) ✅
+  - [x] Step 4: Exp C — nano FROM SCRATCH (0.697) — proved transfer learning's value ✅
+  - [ ] Step 3: Exp B — fine-tune YOLO small (compare accuracy vs speed)
+  - [ ] Step 4: Exp C — nano from scratch (see why transfer learning wins)
 - [ ] **Phase 6 — Evaluation & comparison** (confusion matrix, pick winner)
 - [ ] **Phase 7 — Deployment** (webcam script + batch folder script)
 - [ ] **Phase 8 — Portfolio polish** (README, demo, push to GitHub)
+
+## Experiment results (val mAP50 — higher is better)
+| Exp | Model | Notes | Overall | Cookie | Nona | White-tota |
+|-----|-------|-------|---------|--------|------|------------|
+| A | yolo11n (nano) | pretrained, 100 ep | 0.93 | 0.809 | 0.986 | 0.995 |
+| B | yolo11s (small) | pretrained, 100 ep | 0.981 | 0.964 | 0.995 | 0.985 |
+| C | yolo11n (nano) | FROM SCRATCH, 100 ep | 0.697 | 0.797 | 0.655 | 0.640 |
+
+WINNER: **Exp B (yolo11s small, pretrained) = 0.981**. Model at runs/detect/expB_small_pretrained/weights/best.pt
+Lessons proven: (1) transfer learning huge — A vs C same nano, 0.93 vs 0.697; (2) bigger model lifts hard bird Cookie.
+Use workers=2 to avoid RAM crash on Windows.
 
 ## Decisions & notes
 - OS: Windows 11 (use PowerShell)
