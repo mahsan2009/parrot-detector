@@ -7,8 +7,9 @@ This file tracks where we are. Each session, read the top to remember what's don
 ---
 
 ## Current position
-> **Phase 5 COMPLETE ✅ → next: Phase 6 — Evaluation (confusion matrix, pick winner)**
-> Winner: Exp B (yolo11s small, pretrained) mAP50 0.981 → runs/detect/expB_small_pretrained/weights/best.pt
+> **Phase 6 COMPLETE ✅ → next: Phase 7 — Deployment (webcam + batch scripts)**
+> Decision: deploy current winner (Exp B) to finish the pipeline; improve with MORE DATA later (v2).
+> Winner model: runs/detect/expB_small_pretrained/weights/best.pt (val 0.981, honest test 0.322).
 > Installed: torch 2.12.1+cu130 (GPU OK), ultralytics 8.4.72, opencv. GPU: RTX 3060. (use workers=2)
 > Dataset split BY SESSION: train 160 / val 44 / test 23 (all in data/dataset, YOLO layout).
 > Config: data.yaml (classes 0 Cookie, 1 Nona, 2 White-tota). Split script: scripts/split_dataset.py.
@@ -45,7 +46,10 @@ This file tracks where we are. Each session, read the top to remember what's don
   - [x] Step 4: Exp C — nano FROM SCRATCH (0.697) — proved transfer learning's value ✅
   - [ ] Step 3: Exp B — fine-tune YOLO small (compare accuracy vs speed)
   - [ ] Step 4: Exp C — nano from scratch (see why transfer learning wins)
-- [ ] **Phase 6 — Evaluation & comparison** (confusion matrix, pick winner)
+- [x] **Phase 6 — Evaluation & comparison** ✅ (read confusion matrix; honest test-set score)
+  - [x] Read confusion matrix: birds rarely confused (1 Cookie→Nona); main issue = false alarms
+  - [x] Honest test-set eval: mAP50 0.322 → overfitting / needs more varied data
+  - [x] Decision: deploy current model now, improve with more data later (v2)
 - [ ] **Phase 7 — Deployment** (webcam script + batch folder script)
 - [ ] **Phase 8 — Portfolio polish** (README, demo, push to GitHub)
 
@@ -56,7 +60,11 @@ This file tracks where we are. Each session, read the top to remember what's don
 | B | yolo11s (small) | pretrained, 100 ep | 0.981 | 0.964 | 0.995 | 0.985 |
 | C | yolo11n (nano) | FROM SCRATCH, 100 ep | 0.697 | 0.797 | 0.655 | 0.640 |
 
-WINNER: **Exp B (yolo11s small, pretrained) = 0.981**. Model at runs/detect/expB_small_pretrained/weights/best.pt
+WINNER: **Exp B (yolo11s small, pretrained) = 0.981 (val)**. Model at runs/detect/expB_small_pretrained/weights/best.pt
+HONEST TEST-SET score (never-seen clips): mAP50 **0.322** (Cookie 0.425, Nona 0.238, White-tota 0.304).
+  → Big val→test gap = OVERFITTING / weak generalization. Root cause: not enough DATA VARIETY (too many similar/cage clips).
+  → Fix: collect more clips per bird in genuinely different places/lighting/angles, then re-extract → re-label → retrain.
+  → Test set is small (23 imgs) so number is noisy, but the gap is real.
 Lessons proven: (1) transfer learning huge — A vs C same nano, 0.93 vs 0.697; (2) bigger model lifts hard bird Cookie.
 Use workers=2 to avoid RAM crash on Windows.
 
