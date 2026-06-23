@@ -7,9 +7,11 @@ This file tracks where we are. Each session, read the top to remember what's don
 ---
 
 ## Current position
-> **Phase 6 COMPLETE ✅ → next: Phase 7 — Deployment (webcam + batch scripts)**
-> Decision: deploy current winner (Exp B) to finish the pipeline; improve with MORE DATA later (v2).
-> Winner model: runs/detect/expB_small_pretrained/weights/best.pt (val 0.981, honest test 0.322).
+> **Phase 7 COMPLETE ✅ → next: Phase 8 — Portfolio polish (README, demo, final push)**
+> Both scripts work: detect_live.py (video/webcam) + detect_folder.py (batch). Model at models/parrot_best.pt.
+> Observed honest behavior: misses + some false alarms (esp. low conf). conf~0.4-0.5 balanced. Fix = more data (v2).
+> No PC webcam — demo on a VIDEO FILE (or phone-as-webcam later). Winner: Exp B (val 0.981, test 0.322).
+> Winner model: runs/detect/expB_small_pretrained/weights/best.pt → copy to models/parrot_best.pt
 > Installed: torch 2.12.1+cu130 (GPU OK), ultralytics 8.4.72, opencv. GPU: RTX 3060. (use workers=2)
 > Dataset split BY SESSION: train 160 / val 44 / test 23 (all in data/dataset, YOLO layout).
 > Config: data.yaml (classes 0 Cookie, 1 Nona, 2 White-tota). Split script: scripts/split_dataset.py.
@@ -50,7 +52,11 @@ This file tracks where we are. Each session, read the top to remember what's don
   - [x] Read confusion matrix: birds rarely confused (1 Cookie→Nona); main issue = false alarms
   - [x] Honest test-set eval: mAP50 0.322 → overfitting / needs more varied data
   - [x] Decision: deploy current model now, improve with more data later (v2)
-- [ ] **Phase 7 — Deployment** (webcam script + batch folder script)
+- [ ] **Phase 7 — Deployment** (webcam script + batch folder script)  ← *you are here*
+  - [x] Step 1: Copied model to models/parrot_best.pt; wrote scripts/detect_live.py ✅
+  - [x] Step 2: Ran live/video demo — boxed + named White-tota ✅
+  - [x] Step 3: Wrote scripts/detect_folder.py (batch over a folder) ✅
+  - [x] Step 4: Ran batch demo on test images; saw honest misses/false alarms + precision-recall tradeoff ✅
 - [ ] **Phase 8 — Portfolio polish** (README, demo, push to GitHub)
 
 ## Experiment results (val mAP50 — higher is better)

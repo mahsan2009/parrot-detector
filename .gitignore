@@ -25,8 +25,9 @@ data/dataset/
 *.onnx
 models/*
 
-# --- YOLO training output folders (auto-generated, large) ---
+# --- YOLO training/prediction output folders (auto-generated, large) ---
 runs/
+outputs/
 
 # --- Jupyter notebook autosave junk ---
 .ipynb_checkpoints/
