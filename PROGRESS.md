@@ -7,9 +7,9 @@ This file tracks where we are. Each session, read the top to remember what's don
 ---
 
 ## Current position
-> **Phase 7 COMPLETE ✅ → next: Phase 8 — Portfolio polish (README, demo, final push)**
-> Both scripts work: detect_live.py (video/webcam) + detect_folder.py (batch). Model at models/parrot_best.pt.
-> Observed honest behavior: misses + some false alarms (esp. low conf). conf~0.4-0.5 balanced. Fix = more data (v2).
+> **🎉 PROJECT COMPLETE — all 9 phases (0–8) done!**
+> README polished (results/how-to-run/limitations), demo image at assets/demo.jpg, scripts working.
+> Model at models/parrot_best.pt (val 0.981, honest test 0.322). v2 plan: collect more varied data → retrain.
 > No PC webcam — demo on a VIDEO FILE (or phone-as-webcam later). Winner: Exp B (val 0.981, test 0.322).
 > Winner model: runs/detect/expB_small_pretrained/weights/best.pt → copy to models/parrot_best.pt
 > Installed: torch 2.12.1+cu130 (GPU OK), ultralytics 8.4.72, opencv. GPU: RTX 3060. (use workers=2)
@@ -57,7 +57,10 @@ This file tracks where we are. Each session, read the top to remember what's don
   - [x] Step 2: Ran live/video demo — boxed + named White-tota ✅
   - [x] Step 3: Wrote scripts/detect_folder.py (batch over a folder) ✅
   - [x] Step 4: Ran batch demo on test images; saw honest misses/false alarms + precision-recall tradeoff ✅
-- [ ] **Phase 8 — Portfolio polish** (README, demo, push to GitHub)
+- [ ] **Phase 8 — Portfolio polish** (README, demo, push to GitHub)  ← *you are here*
+  - [x] Step 1: Filled in README results / how-to-run / limitations ✅
+  - [x] Step 2: Added demo image at assets/demo.jpg ✅
+  - [ ] Step 3: Final commit + push  ← *last step!*
 
 ## Experiment results (val mAP50 — higher is better)
 | Exp | Model | Notes | Overall | Cookie | Nona | White-tota |
