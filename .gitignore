@@ -20,6 +20,10 @@ data/frames/*
 data/label_export/
 data/dataset/
 
+# --- Public teaching dataset + generated classification crops ---
+data/oxford-iiit-pet/
+data/classification_crops/
+
 # --- Trained model weights (large binary files) ---
 *.pt
 *.onnx
@@ -28,6 +32,9 @@ models/*
 # --- YOLO training/prediction output folders (auto-generated, large) ---
 runs/
 outputs/
+
+# --- Generated notebook figures and reports ---
+reports/
 
 # --- Jupyter notebook autosave junk ---
 .ipynb_checkpoints/

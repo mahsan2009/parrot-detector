@@ -1,9 +1,36 @@
 [project]
 name = "parrotdetector"
 version = "0.1.0"
-description = "Add your description here"
+description = "A beginner-friendly computer-vision learning project: classification, detection, and raw PyTorch outputs"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "ipykernel>=7.3.0",
+    "ipywidgets",
+    "matplotlib",
+    "opencv-python",
+    "pandas",
+    "pillow",
+    "pip",
+    "scikit-learn",
+    "seaborn",
+    "torch",
+    "torchvision",
+    "tqdm",
+    "ultralytics",
 ]
+
+# This learning checkout runs on an Intel CPU/iGPU Windows laptop. Use the
+# official CPU wheels: smaller downloads, lower memory use, and no CUDA code.
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu" },
+]
+torchvision = [
+    { index = "pytorch-cpu" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

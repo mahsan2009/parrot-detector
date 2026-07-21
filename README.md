@@ -4,10 +4,12 @@ A computer-vision system that detects my three pet cockatiels **individually** a
 name — live on a webcam and as a batch over a folder of images/videos. Everything runs **locally** and
 uses **free** tools.
 
-> ✅ **Status: v1 complete** — a working end-to-end pipeline (data → labels → training → evaluation →
-> live & batch detection). It's an honest proof-of-concept: it works well on familiar scenes but needs
-> more varied data to be reliable everywhere (see _Limitations & future work_). Built as my first
-> end-to-end machine learning project.
+> ✅ **Part 1 status: v1 complete** — a working end-to-end YOLO pipeline (data → labels → training →
+> evaluation → live & batch detection). The private data and model are not stored in Git.
+>
+> 📘 **Part 2 status: in progress** — rebuild the core ideas in PyTorch by hand using a reproducible
+> public teaching dataset. See [LEARNING_PLAN.md](LEARNING_PLAN.md). This checkout is being developed on
+> a CPU-only Intel laptop with 8 GB RAM, so examples use small batches and memory-safe settings.
 
 ---
 
@@ -32,7 +34,7 @@ each bird with the correct name.
 | --- | --- |
 | **Python 3.12** + **uv** | Language + environment/package manager |
 | **Ultralytics YOLO** | The object-detection model (training + detection) |
-| **PyTorch (CUDA)** | The engine YOLO runs on, using the GPU |
+| **PyTorch** | The model/training engine (CPU in the current learning checkout; CUDA was used for Part 1) |
 | **OpenCV** | Reading the webcam and drawing boxes/labels |
 | **ffmpeg** | Pulling still frames out of videos |
 | **Label Studio** | Drawing the training labels (bounding boxes) by hand |
@@ -91,20 +93,33 @@ _The detector boxing and naming a bird in a video frame._
 
 ## How to run
 
-**Requirements:** Windows + an NVIDIA GPU, [uv](https://docs.astral.sh/uv/) installed.
+### Part 2 learning track (works on the current CPU-only Windows laptop)
 
 ```powershell
-# 1) Create the environment and install dependencies
-uv venv --python 3.12
-.\.venv\Scripts\Activate.ps1
-uv pip install torch torchvision --torch-backend=auto   # GPU PyTorch
-uv pip install ultralytics
+# 1) Reproduce the project environment from pyproject.toml + uv.lock
+uv sync
 
-# 2) Live detection on a video file (or pass --source 0 for a webcam)
-python scripts/detect_live.py --source path/to/video.mov
+# 2) Download and checksum the public Oxford-IIIT Pet data
+uv run python scripts/download_learning_dataset.py
 
-# 3) Batch detection over a folder of images/videos
-python scripts/detect_folder.py --source path/to/folder
+# 3) Open notebooks/01_classification_eda.ipynb and select .venv as its kernel
+```
+
+`uv` is the package/environment tool. `pyproject.toml` lists what the project needs; `uv.lock` records
+the exact resolved versions; `.venv` is the isolated local Python installation. The downloaded public
+data is ignored by Git and can always be recreated.
+
+### Part 1 YOLO inference
+
+This requires restoring the ignored `models/parrot_best.pt`. An NVIDIA GPU is optional for inference
+but much faster; the original training experiments used one.
+
+```powershell
+# Live detection on a video file (or pass --source 0 for a webcam)
+uv run python scripts/detect_live.py --source path/to/video.mov
+
+# Batch detection over a folder of images/videos
+uv run python scripts/detect_folder.py --source path/to/folder
 ```
 
 > The trained model (`models/parrot_best.pt`) and the dataset are kept out of git (large files). The
