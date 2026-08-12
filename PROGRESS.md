@@ -9,7 +9,7 @@ This file tracks where we are. Each session, read the top to remember what's don
 ## Current position
 > **Part 1 (YOLO) is complete. Part 2 (learning PyTorch by hand) has started.**
 > The private dataset/model files are not present in this checkout, so Part 2 uses a documented public teaching dataset.
-> Current step: Stage 0 setup + Oxford-IIIT Pet download, followed by Notebook 1 EDA.
+> Current step: Part 2 classification milestone is complete. The selected epoch-7 frozen-ResNet18 achieved 82.7% official-test accuracy (243/294), compared with 82.8% validation accuracy. Main limitation: Egyptian Mau is often predicted as Bengal. Next: save/publish the notebooks and report the result honestly; no further tuning from the test set.
 > Detailed roadmap and corrections: `LEARNING_PLAN.md`.
 > Current computer: CPU-only Intel i7-1165G7 / Iris Xe / 8 GB RAM; use CPU PyTorch, small batches, and `num_workers=0`.
 >
@@ -31,6 +31,13 @@ This file tracks where we are. Each session, read the top to remember what's don
 - [x] Sync the CPU environment and verify that CUDA is correctly unavailable on this laptop.
 - [x] Download Oxford-IIIT Pet and verify the official archives.
 - [x] Complete `notebooks/01_classification_eda.ipynb` top-to-bottom.
+- [x] Complete `notebooks/02_classification_data.ipynb` top-to-bottom.
+- [x] Create and complete `notebooks/03_models_and_raw_outputs.ipynb`.
+- [x] Create and complete `notebooks/04_training_loop.ipynb` (five CPU epochs; best validation accuracy 81.0%).
+- [x] Complete `notebooks/05_validation_error_analysis.ipynb`.
+- [x] Complete `notebooks/06_resume_training_and_select_best.ipynb` (epoch 7 selected at 82.8% validation accuracy).
+- [x] Complete `notebooks/07_compare_validation_checkpoints.ipynb` (Bengal/Egyptian Mau trade-off inspected).
+- [x] Complete `notebooks/08_final_test_evaluation.ipynb` (official-test accuracy 82.7%, 243/294).
 - [ ] Continue through classification Notebooks 2–6.
 - [ ] Continue to manual Torchvision detection.
 

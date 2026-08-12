@@ -39,5 +39,8 @@ reports/
 # --- Jupyter notebook autosave junk ---
 .ipynb_checkpoints/
 
+# --- Local Codex teaching context (may contain private learner information) ---
+CODEX_HANDOFF.md
+
 # ...but DO keep the empty-folder placeholders so the structure survives:
 !**/.gitkeep
