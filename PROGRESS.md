@@ -7,8 +7,13 @@ This file tracks where we are. Each session, read the top to remember what's don
 ---
 
 ## Current position
-> **🎉 PROJECT COMPLETE — all 9 phases (0–8) done!**
-> README polished (results/how-to-run/limitations), demo image at assets/demo.jpg, scripts working.
+> **Part 1 (YOLO) is complete. Part 2 (learning PyTorch by hand) has started.**
+> The private dataset/model files are not present in this checkout, so Part 2 uses a documented public teaching dataset.
+> Current step: Part 2 classification milestone is complete. The selected epoch-7 frozen-ResNet18 achieved 82.7% official-test accuracy (243/294), compared with 82.8% validation accuracy. Main limitation: Egyptian Mau is often predicted as Bengal. Next: save/publish the notebooks and report the result honestly; no further tuning from the test set.
+> Detailed roadmap and corrections: `LEARNING_PLAN.md`.
+> Current computer: CPU-only Intel i7-1165G7 / Iris Xe / 8 GB RAM; use CPU PyTorch, small batches, and `num_workers=0`.
+>
+> Part 1 README polished (results/how-to-run/limitations), demo image at assets/demo.jpg, scripts working.
 > Model at models/parrot_best.pt (val 0.981, honest test 0.322). v2 plan: collect more varied data → retrain.
 > No PC webcam — demo on a VIDEO FILE (or phone-as-webcam later). Winner: Exp B (val 0.981, test 0.322).
 > Winner model: runs/detect/expB_small_pretrained/weights/best.pt → copy to models/parrot_best.pt
@@ -16,6 +21,25 @@ This file tracks where we are. Each session, read the top to remember what's don
 > Dataset split BY SESSION: train 160 / val 44 / test 23 (all in data/dataset, YOLO layout).
 > Config: data.yaml (classes 0 Cookie, 1 Nona, 2 White-tota). Split script: scripts/split_dataset.py.
 > Repo live at: https://github.com/mahsan2009/parrot-detector
+
+## Part 2 checklist
+
+- [x] Audit the continuation plan against the actual repository.
+- [x] Choose a public replacement dataset with labels and localization annotations.
+- [x] Record plan deficiencies and an improved roadmap in `LEARNING_PLAN.md`.
+- [x] Record required Python libraries in `pyproject.toml`.
+- [x] Sync the CPU environment and verify that CUDA is correctly unavailable on this laptop.
+- [x] Download Oxford-IIIT Pet and verify the official archives.
+- [x] Complete `notebooks/01_classification_eda.ipynb` top-to-bottom.
+- [x] Complete `notebooks/02_classification_data.ipynb` top-to-bottom.
+- [x] Create and complete `notebooks/03_models_and_raw_outputs.ipynb`.
+- [x] Create and complete `notebooks/04_training_loop.ipynb` (five CPU epochs; best validation accuracy 81.0%).
+- [x] Complete `notebooks/05_validation_error_analysis.ipynb`.
+- [x] Complete `notebooks/06_resume_training_and_select_best.ipynb` (epoch 7 selected at 82.8% validation accuracy).
+- [x] Complete `notebooks/07_compare_validation_checkpoints.ipynb` (Bengal/Egyptian Mau trade-off inspected).
+- [x] Complete `notebooks/08_final_test_evaluation.ipynb` (official-test accuracy 82.7%, 243/294).
+- [ ] Continue through classification Notebooks 2–6.
+- [ ] Continue to manual Torchvision detection.
 
 ## Phase checklist
 - [x] **Phase 0 — Setup** ✅ terminal basics, GPU check, uv venv, git + GitHub, first commit + push

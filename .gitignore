@@ -20,6 +20,10 @@ data/frames/*
 data/label_export/
 data/dataset/
 
+# --- Public teaching dataset + generated classification crops ---
+data/oxford-iiit-pet/
+data/classification_crops/
+
 # --- Trained model weights (large binary files) ---
 *.pt
 *.onnx
@@ -29,8 +33,14 @@ models/*
 runs/
 outputs/
 
+# --- Generated notebook figures and reports ---
+reports/
+
 # --- Jupyter notebook autosave junk ---
 .ipynb_checkpoints/
+
+# --- Local Codex teaching context (may contain private learner information) ---
+CODEX_HANDOFF.md
 
 # ...but DO keep the empty-folder placeholders so the structure survives:
 !**/.gitkeep
