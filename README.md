@@ -7,9 +7,10 @@ uses **free** tools.
 > ✅ **Part 1 status: v1 complete** — a working end-to-end YOLO pipeline (data → labels → training →
 > evaluation → live & batch detection). The private data and model are not stored in Git.
 >
-> 📘 **Part 2 status: in progress** — rebuild the core ideas in PyTorch by hand using a reproducible
-> public teaching dataset. See [LEARNING_PLAN.md](LEARNING_PLAN.md). This checkout is being developed on
-> a CPU-only Intel laptop with 8 GB RAM, so examples use small batches and memory-safe settings.
+> 📘 **Part 2 status: classification milestone complete** — a reproducible PyTorch learning track using
+> the public Oxford-IIIT Pet dataset. A frozen-ResNet18 classifier achieved **82.7% official-test
+> accuracy (243/294)** across three cat breeds. See [notebooks](notebooks/) and
+> [LEARNING_PLAN.md](LEARNING_PLAN.md).
 
 ---
 
@@ -85,6 +86,26 @@ set contains entirely unseen clips — an honest measure of generalization).
   varied data" is the main next step. The confusion matrix showed the birds are rarely mistaken for *each
   other*; the main errors are **misses** and **false alarms** on unfamiliar backgrounds.
 
+### Part 2 — PyTorch classification learning track
+
+To learn the core training workflow by hand, I built a three-class cat-breed classifier using the public
+Oxford-IIIT Pet dataset: **Abyssinian**, **Bengal**, and **Egyptian Mau**.
+
+| Item | Result |
+| --- | --- |
+| Model | ImageNet-pretrained ResNet18; frozen feature extractor and new 3-class final layer |
+| Training data | 232 mask-derived animal crops |
+| Validation data | 58 crops, used for model selection |
+| Official test data | 294 untouched crops |
+| Selected checkpoint | Epoch 7 |
+| Final official-test accuracy | **82.7% (243/294)** |
+
+The selected model scored **82.8%** on validation and **82.7%** on the held-out official test split,
+suggesting that its validation result generalised well to unseen images. The main limitation is a
+recurring **Egyptian Mau → Bengal** confusion on visually similar spotted or striped cats. The notebooks
+show data preparation, augmentation, raw logits, training, validation analysis, checkpoint selection,
+and the final test evaluation.
+
 ## Demo
 
 ![Live detection demo](assets/demo.jpg)
@@ -103,6 +124,7 @@ uv sync
 uv run python scripts/download_learning_dataset.py
 
 # 3) Open notebooks/01_classification_eda.ipynb and select .venv as its kernel
+#    Run the notebooks in numeric order through 08_final_test_evaluation.ipynb
 ```
 
 `uv` is the package/environment tool. `pyproject.toml` lists what the project needs; `uv.lock` records
@@ -136,6 +158,9 @@ This is an honest v1, not a finished product:
 - **Cookie vs. Nona** (same colour) is the hardest pair, as expected for fine-grained recognition.
 - **Next steps:** collect a more diverse dataset → re-label → retrain (a "v2"); then re-evaluate on the
   held-out test set to confirm the gap closes.
+- **Part 2 classifier:** Egyptian Mau is frequently mistaken for Bengal when coat patterns overlap. A
+  larger and more diverse public training subset, or carefully fine-tuning more of ResNet, would be
+  reasonable future experiments—but the reported test result is not used to tune the current model.
 
 ---
 
